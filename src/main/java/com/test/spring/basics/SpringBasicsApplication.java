@@ -1,25 +1,32 @@
 package com.test.spring.basics;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import com.test.spring.basics.scope.PersonDAO;
+
 @SpringBootApplication
 public class SpringBasicsApplication {
+
+	private static Logger LOGGER = LoggerFactory.getLogger(SpringBasicsApplication.class);
 
 	public static void main(String[] args) {
 
 		ApplicationContext applicationContext = SpringApplication.run(SpringBasicsApplication.class, args);
-		BinarySearchImpl binarySearch = applicationContext.getBean(BinarySearchImpl.class);
 
-		int foundPosition = binarySearch.search(new int[] { 1, 4, 5, 8, 12, 15, 29, 25 }, 12);
+		PersonDAO personDAO = applicationContext.getBean(PersonDAO.class);
+		PersonDAO personDAO1 = applicationContext.getBean(PersonDAO.class);
 
-		if (foundPosition != -1) {
-			System.out.println("found at position " + (foundPosition + 1));
-		} else {
-			System.out.println("not found!");
-		}
+		LOGGER.info("{}", personDAO);
+		LOGGER.info("{}", personDAO.getJdbcConnection());
+		LOGGER.info("{}", personDAO.getJdbcConnection());
 
+		LOGGER.info("{}", personDAO1);
+		LOGGER.info("{}", personDAO1.getJdbcConnection());
+		LOGGER.info("{}", personDAO1.getJdbcConnection());
 	}
 
 }

@@ -1,10 +1,8 @@
-package com.test.spring.basics;
+package com.test.spring.basics.basic;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
 public class BubbleSortAlgorithm implements SortAlgorithm {
 
 	@Override
